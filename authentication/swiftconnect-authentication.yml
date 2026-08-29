@@ -1,0 +1,55 @@
+generated: '2026-08-29'
+method: searched
+source: https://swiftconnect.io/developer-api/
+docs: https://swiftconnect.readme.io/
+note: >-
+  Derived from SwiftConnect's own published Developer API page (the request examples it prints
+  verbatim) and confirmed against a live unauthenticated request to the API host. There is no public
+  OpenAPI to derive securitySchemes from — the reference lives on a password-protected ReadMe hub —
+  so this profile records only what the provider published in public and what the API itself
+  returned when called without credentials.
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  bearer_format: JWT
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  in: header
+  parameter: Authorization
+  description: >-
+    Requests carry `Authorization: Bearer <token>`. SwiftConnect's published curl example uses a
+    bearer token, and an unauthenticated request to a live resource returns HTTP 401 with
+    `{"code":401,"message":"Invalid JWT","client_error_code":""}`, which names the token format as
+    a JWT.
+  sources:
+  - https://swiftconnect.io/developer-api/
+  - probe:https://api.swiftconnect.io/credentials
+token_issuance:
+  documented: false
+  note: >-
+    How a JWT is obtained is documented only inside the password-protected developer hub. There is
+    no public OIDC discovery document or OAuth authorization-server metadata on any SwiftConnect
+    host (/.well-known/openid-configuration and /.well-known/oauth-authorization-server both 404 on
+    api.swiftconnect.io; accounts-v2.swiftconnect.io answers 200 with a single-page-app shell for
+    every path, which is not a document).
+  sign_in: https://accounts-v2.swiftconnect.io/
+x-evidence:
+- url: https://api.swiftconnect.io/credentials
+  method: GET
+  http_status: 401
+  body: '{"code":401,"message":"Invalid JWT","client_error_code":""}'
+  fetched: '2026-08-29'
+- url: https://swiftconnect.io/developer-api/
+  http_status: 301
+  redirects_to: https://www.swiftconnect.com/developer-api/
+  note: >-
+    The live page now 404s; the request examples above were read from the Internet Archive capture
+    of the provider's own Developer API page.
+  fetched: '2026-08-29'

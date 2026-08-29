@@ -1,0 +1,58 @@
+generated: '2026-08-29'
+method: probed
+source: probe:https://api.swiftconnect.io
+format: custom-json
+rfc9457: false
+note: >-
+  SwiftConnect publishes no OpenAPI and no public error reference, so this catalog cannot be derived
+  from 4xx/5xx response definitions. It records the error envelope actually returned by the live API
+  and the one status code that can be observed without credentials. It is deliberately short: the
+  remaining codes exist but are documented only inside the password-protected developer hub.
+envelope:
+  content_type: application/json
+  fields:
+  - code
+  - message
+  - client_error_code
+  example: '{"code":401,"message":"Invalid JWT","client_error_code":""}'
+problems:
+- status: 401
+  code: 401
+  title: Invalid JWT
+  message: Invalid JWT
+  client_error_code: ''
+  meaning: >-
+    The Authorization bearer token is missing, malformed, expired, or not a valid SwiftConnect JWT.
+  remediation: 'Obtain a fresh JWT and resend with the header: Authorization: Bearer <token>'
+  observed_on:
+  - https://api.swiftconnect.io/credentials
+  - https://api.swiftconnect.io/persons
+  - https://api.swiftconnect.io/meetings
+  - https://api.swiftconnect.io/organizations
+  - https://api.swiftconnect.io/buildings
+  - https://api.swiftconnect.io/readers
+  - https://api.swiftconnect.io/devices
+  method: probed
+- status: 404
+  title: Not found
+  message: 404 page not found
+  content_type: 'text/plain; charset=utf-8'
+  meaning: >-
+    Path is not a registered route. Note this response is plain text, NOT the JSON error envelope —
+    unrouted paths are answered by the framework's default handler before the API's error handling.
+  observed_on:
+  - https://api.swiftconnect.io/
+  - https://api.swiftconnect.io/openapi.json
+  method: probed
+coverage:
+  documented_codes: 1
+  note: >-
+    One JSON-envelope status observed. A full error reference almost certainly exists behind
+    https://swiftconnect.readme.io/ (HTTP 200, password-protected).
+x-evidence:
+- url: https://api.swiftconnect.io/credentials
+  http_status: 401
+  fetched: '2026-08-29'
+- url: https://api.swiftconnect.io/
+  http_status: 404
+  fetched: '2026-08-29'

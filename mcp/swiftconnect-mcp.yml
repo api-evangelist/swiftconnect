@@ -1,0 +1,36 @@
+generated: '2026-08-29'
+method: searched
+status: none
+note: >-
+  No SwiftConnect MCP server exists, hosted or local. No mcp.swiftconnect.* host resolves, no
+  /mcp route responds on api.swiftconnect.io, npm has no @swiftconnect package, and nothing on the
+  company's public surface mentions MCP or agent tooling. A candidate tool list could not be derived
+  either, because SwiftConnect publishes no OpenAPI to derive it from. No MCPServer pointer is
+  emitted.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+tools: []
+x-evidence:
+- url: https://api.swiftconnect.io/openapi.json
+  status: 404
+- url: https://api.swiftconnect.io/mcp
+  method: POST tools/list
+  status: 404
+- url: https://api.swiftconnect.io/sse
+  method: POST tools/list
+  status: 404
+- host: mcp.swiftconnect.io
+  dns: NXDOMAIN
+- host: mcp.swiftconnect.com
+  dns: NXDOMAIN
+- registry: npm
+  query: swiftconnect
+  results: 0
+- registry: npm
+  query: 'scope:swiftconnect'
+  results: 0

@@ -1,0 +1,66 @@
+generated: '2026-08-29'
+method: searched
+source: registry search 2026-08-29
+package_count: 0
+note: >-
+  No first-party SwiftConnect client library is published to any public package registry. npm search
+  for "swiftconnect" returns 0 results; PyPI, RubyGems and crates.io have no such package. The
+  company does ship a mobile "universal provisioning SDK" (its Developer API page shows a Swift
+  snippet using `SwiftConnect.shared.connect(...)` / `addWallet()` to add a credential to Apple
+  Wallet), but that SDK is distributed to customers through the password-protected developer hub,
+  not through a public registry — so there is nothing here to version or date. No `SDKs` pointer is
+  emitted.
+packages: []
+rejected_candidates:
+- name: SwiftConnect
+  registry: cocoapods
+  url: https://cocoapods.org/pods/SwiftConnect
+  version: 1.0.0
+  published: '2020-05-18'
+  official: false
+  reason: >-
+    NAME COLLISION, not this company. The CocoaPods trunk record lists the owner as an unrelated
+    individual (a personal account, not SwiftConnect Inc.), last published 2020-05-18. Not
+    attributed.
+- name: utmapp/SwiftConnect
+  registry: github
+  url: https://github.com/utmapp/SwiftConnect
+  official: false
+  reason: >-
+    NAME COLLISION. A peer-to-peer networking library built on Apple's Network.framework, published
+    by the UTM project. Unrelated to SwiftConnect Inc.
+- name: github.com/swiftconnect
+  registry: github
+  official: false
+  reason: >-
+    A personal GitHub USER account (type: User, created 2020) holding three Raspberry Pi wifi-setup
+    repositories. Not a SwiftConnect Inc. organization; no GitHubOrganization pointer emitted.
+sdk_documented_but_unpublished:
+- name: SwiftConnect universal provisioning SDK
+  language: swift
+  platform: ios
+  distribution: private / customer-only
+  evidence: https://swiftconnect.io/developer-api/
+  version: null
+  published: null
+  note: >-
+    Version and release date are unknown — the SDK has no public registry entry and no public
+    release page. Checked, nothing to record.
+registries_checked:
+- registry: npm
+  query: swiftconnect
+  results: 0
+- registry: pypi
+  package: swiftconnect
+  status: 404
+- registry: rubygems
+  package: swiftconnect
+  status: 404
+- registry: crates.io
+  package: swiftconnect
+  status: 403
+  note: crates.io rejected the unauthenticated request; treated as not-established rather than absent.
+- registry: cocoapods
+  package: SwiftConnect
+  status: 200
+  verdict: different owner

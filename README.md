@@ -64,5 +64,15 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SwiftConnect is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+SwiftConnect operates a "connected access network" that unifies digital identity, physical access
+credentials and building infrastructure into one platform, so an employee badge can live in Apple,
+Google or Samsung Wallet and open the doors an employer has authorized. Founded in 2020 and
+headquartered in Stamford, Connecticut, it sits between access-control systems, credential
+providers, identity providers and workplace platforms and automates credential issuance,
+permission change and revocation across all of them.
+
+- Website: https://www.swiftconnect.com/
+- Developer API: https://api.swiftconnect.io (bearer JWT, `Accept: application/vnd.swiftconnect.v2+json`)
+- API reference: https://swiftconnect.readme.io/ — password-protected, so no machine-readable
+  contract is public. See `x-coverage` in `apis.yml`.
+- Status: https://swiftconnect.statuspage.io/

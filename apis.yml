@@ -1,23 +1,123 @@
 aid: swiftconnect
 name: SwiftConnect
-description: 'SwiftConnect is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  SwiftConnect operates a "connected access network" that unifies digital identity, physical access
+  credentials and building infrastructure into one platform, so an employee badge can live in Apple,
+  Google or Samsung Wallet and open the doors an employer has authorized. Founded in 2020 and
+  headquartered in Stamford, Connecticut, the company sits between access-control systems
+  (LenelS2, Software House C-CURE 9000, Genetec), credential providers (HID, LEGIC, Wavelynx),
+  identity providers and workplace platforms, and automates credential issuance, permission changes
+  and revocation across all of them. It exposes that capability programmatically through the
+  SwiftConnect Developer API at https://api.swiftconnect.io — a JSON REST API using bearer JWT
+  authentication and a versioned `application/vnd.swiftconnect.v2+json` media type — plus a mobile
+  "universal provisioning SDK" for adding credentials to a device wallet. The API reference is
+  published on a password-protected ReadMe hub, so no machine-readable contract is public.
+image: https://swiftconnect.com/wp-content/uploads/2025/04/swiftconnect-icon.svg
 url: https://raw.githubusercontent.com/api-evangelist/swiftconnect/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-29'
 modified: '2026-08-29'
 tags:
 - Company
-apis: []
+- Access Control
+- Physical Security
+- Identity
+- Credentials
+- Mobile Wallet
+- Workplace
+- Commercial Real Estate
+- Provisioning
+- Internet of Things
+apis:
+- aid: swiftconnect:swiftconnect-api
+  name: SwiftConnect Developer API
+  description: >-
+    The SwiftConnect Developer API provides programmatic access to access credentials, permissions,
+    people, buildings, readers and devices across the connected access network, so provisioning
+    workflows can be automated from a directory, HR system or workplace app instead of being
+    administered by hand. It is a JSON REST API served from https://api.swiftconnect.io, authenticated
+    with a bearer JWT and version-negotiated through the Accept header
+    (application/vnd.swiftconnect.v2+json). The reference is published on SwiftConnect's ReadMe
+    developer hub, which is password-protected, so operation-level documentation and any
+    machine-readable description are not publicly reachable.
+  humanURL: https://swiftconnect.readme.io/
+  baseURL: https://api.swiftconnect.io
+  tags:
+  - Access Control
+  - Credentials
+  - Identity
+  - Provisioning
+  properties:
+  - type: Documentation
+    url: https://swiftconnect.readme.io/
+  - type: Authentication
+    url: authentication/swiftconnect-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/swiftconnect-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.swiftconnect.com/
+- type: Documentation
+  url: https://swiftconnect.readme.io/
+- type: Blog
+  url: https://swiftconnect.com/blog/
+- type: BlogRSS
+  url: https://swiftconnect.com/blog/feed/
+- type: Support
+  url: https://www.swiftconnect.com/contact-us/
+- type: Login
+  url: https://accounts-v2.swiftconnect.io/
+- type: TermsOfService
+  url: https://www.swiftconnect.com/terms-conditions/
+- type: PrivacyPolicy
+  url: https://www.swiftconnect.com/privacy-policy/
+- type: StatusPage
+  url: https://swiftconnect.statuspage.io/
+- type: Lifecycle
+  url: lifecycle/swiftconnect-lifecycle.yml
+- type: Authentication
+  url: authentication/swiftconnect-authentication.yml
+- type: Conventions
+  url: conventions/swiftconnect-conventions.yml
+- type: ErrorCatalog
+  url: errors/swiftconnect-problem-types.yml
+- type: RateLimits
+  url: rate-limits/swiftconnect-rate-limits.yml
+- type: Plans
+  url: plans/swiftconnect-plans-pricing.yml
+- type: Packages
+  url: packages/swiftconnect-packages.yml
+- type: Conformance
+  url: conformance/swiftconnect-conformance.yml
+- type: LLMsTxt
+  url: llms/swiftconnect-llms.txt
+x-enrichment:
+  date: '2026-08-29'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    SwiftConnect's API reference is a ReadMe hub at swiftconnect.readme.io that is site-wide
+    password-protected — every path returns the same shell whose canonical link is /password and
+    whose meta description reads "This page is password-protected" — so the contract is unreadable
+    even though the API itself is live and answers on api.swiftconnect.io.
+  evidence:
+  - url: https://swiftconnect.readme.io/
+    status: 200
+  - url: https://api.swiftconnect.io/credentials
+    status: 401
+  - url: https://api.swiftconnect.io/openapi.json
+    status: 404
+  - url: https://www.swiftconnect.com/developer-api/
+    status: 404
+  checked: '2026-08-29'

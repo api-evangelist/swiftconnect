@@ -1,0 +1,58 @@
+generated: '2026-08-29'
+method: searched
+source: https://swiftconnect.statuspage.io/ + https://swiftconnect.io/developer-api/
+versioning:
+  scheme: media-type
+  current: v2
+  media_type: application/vnd.swiftconnect.v2+json
+  docs: https://swiftconnect.readme.io/
+  note: >-
+    Version negotiated through the Accept header, per SwiftConnect's own published request examples.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No public deprecation or sunset policy was found on swiftconnect.com or on any reachable
+    SwiftConnect surface. No `Deprecation` pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://swiftconnect.statuspage.io/
+status_page_detail:
+  provider: Atlassian Statuspage
+  page_id: 2jclh2t8jx63
+  api: https://swiftconnect.statuspage.io/api/v2/summary.json
+  feeds:
+  - https://swiftconnect.statuspage.io/history.atom
+  - https://swiftconnect.statuspage.io/history.rss
+  components:
+  - name: API (example)
+    status: operational
+  - name: Management Portal (example)
+    status: operational
+  - name: Third Party
+    status: operational
+  - name: HID Tester
+    status: operational
+  note: >-
+    The page is live, provider-operated and machine-readable (Statuspage v2 API), but two of its
+    four components are still named with the Statuspage default "(example)" suffix and the page has
+    recorded no incidents in the observable 90-day window — so it reads as a real but only partly
+    configured status surface. Recorded as observed; not embellished.
+  observed: '2026-08-29'
+domain_migration:
+  from: swiftconnect.io
+  to: swiftconnect.com
+  note: >-
+    The corporate site moved from swiftconnect.io to www.swiftconnect.com — swiftconnect.io now
+    301s to it. The API host did NOT move: it remains api.swiftconnect.io. The former
+    /developer-api/ marketing page did not survive the migration and now returns 404 on the .com
+    host, which is why the base URL and auth model here were read from the archived original.
+  evidence:
+  - url: https://swiftconnect.io/developer-api/
+    status: 301
+  - url: https://www.swiftconnect.com/developer-api/
+    status: 404
+  - url: https://api.swiftconnect.io/credentials
+    status: 401
+deprecated_operations: []

@@ -1,0 +1,95 @@
+generated: '2026-08-29'
+method: probed
+source: probe:https://api.swiftconnect.io + https://swiftconnect.io/developer-api/
+docs: https://swiftconnect.readme.io/
+note: >-
+  Cross-cutting runtime semantics for the SwiftConnect Developer API. SwiftConnect publishes no
+  public OpenAPI and its reference hub is password-protected, so everything here is either printed
+  verbatim on the provider's own public Developer API page or observed on a live unauthenticated
+  request. Fields the provider does not publish are recorded as unknown rather than guessed.
+authentication:
+  style: bearer-jwt
+  header: Authorization
+  detail: see authentication/swiftconnect-authentication.yml
+versioning:
+  scheme: media-type
+  header: Accept
+  current: application/vnd.swiftconnect.v2+json
+  note: >-
+    Version is negotiated through a vendor media type rather than a URI path prefix. The provider's
+    published examples use v2; /v2/... and /api/v2/... path prefixes return 404, confirming the
+    version does not live in the path.
+  source: https://swiftconnect.io/developer-api/
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  content_type: application/json
+  fields:
+  - name: code
+    description: Numeric status code, mirroring the HTTP status.
+  - name: message
+    description: Human-readable message (e.g. "Invalid JWT").
+  - name: client_error_code
+    description: Machine-readable client error code; empty string when not set.
+  example: '{"code":401,"message":"Invalid JWT","client_error_code":""}'
+  detail: see errors/swiftconnect-problem-types.yml
+pagination:
+  style: unknown
+  response_headers:
+  - X-Total-Count
+  note: >-
+    The API advertises `access-control-expose-headers: x-total-count,retry-after`, so a total-count
+    header is part of the browser-visible response contract. The page/limit request parameters that
+    drive it are documented only inside the gated hub, so the style is recorded as unknown rather
+    than assumed.
+  evidence: probe:https://api.swiftconnect.io/credentials
+rate_limit_signaling:
+  response_headers:
+  - Retry-After
+  note: >-
+    Retry-After is explicitly exposed to cross-origin callers. No X-RateLimit-* / RateLimit-*
+    headers were observed on the unauthenticated 401 response; whether they appear on authenticated
+    responses cannot be established without credentials.
+  detail: see rate-limits/swiftconnect-rate-limits.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    No idempotency key header is named on any public SwiftConnect page, and none was observed on the
+    live responses. Not asserted either way — the write surface exists (the provider's own example
+    POSTs to /credentials) but its retry semantics are documented only behind the password wall.
+request_tracing:
+  request_id_header: null
+  note: No correlation/request-id header was returned on the observed responses.
+metadata:
+  supported: unknown
+field_expansion:
+  supported: unknown
+security_headers:
+  strict_transport_security: max-age=31536000; includeSubDomains
+  x_content_type_options: nosniff
+  x_frame_options: DENY
+  permissions_policy: interest-cohort=()
+  observed_on: https://api.swiftconnect.io/credentials
+reversibility:
+  state: undocumented
+  grade: null
+  write_surface: true
+  note: >-
+    The API has a real write surface — SwiftConnect's own published example POSTs a credential to
+    /credentials for a person and a room over a date range — and credential revocation is the
+    company's core marketing claim ("issue and revoke access"). But no public page names the
+    reversal operation, and no window is stated anywhere we can read. Per the pipeline rule, no
+    reversal path and no window are asserted here: an invented window on a physical-access API
+    could leave a door open. This is `undocumented`, not `na`, and it is undocumented because the
+    reference is password-protected — not because the capability is absent.
+  operations: []
+  window: null
+  source: https://swiftconnect.readme.io/ (password-protected)
+dry_run_mode:
+  supported: unknown
+cross_links:
+  errors: errors/swiftconnect-problem-types.yml
+  lifecycle: lifecycle/swiftconnect-lifecycle.yml
+  authentication: authentication/swiftconnect-authentication.yml
+  rate_limits: rate-limits/swiftconnect-rate-limits.yml

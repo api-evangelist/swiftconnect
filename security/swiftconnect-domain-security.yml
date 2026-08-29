@@ -1,0 +1,58 @@
+generated: '2026-08-29'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.swiftconnect.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 17 17:41:49 2026 GMT
+  hsts: false
+- host: swiftconnect.readme.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  9 13:12:37 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.swiftconnect.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 20 06:02:34 2026 GMT
+  hsts: null
+  hsts_note: >-
+    The script probes the host root, which is answered by a plain-text 404 handler that emits no
+    security headers. A request to a real API route DOES return
+    `strict-transport-security: max-age=31536000; includeSubDomains`, alongside
+    `x-content-type-options: nosniff`, `x-frame-options: DENY` and
+    `permissions-policy: interest-cohort=()`. Observed 2026-08-29 on
+    https://api.swiftconnect.io/credentials (HTTP 401).
+domains:
+- domain: swiftconnect.com
+  dnssec: false
+  caa:
+  - 128 issue "letsencrypt.org"
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issue "ssl.com"
+  - 128 issue "amazonaws.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: swiftconnect.io
+  dnssec: false
+  caa:
+  - 128 issue "letsencrypt.org"
+  - 128 issuewild "letsencrypt.org"
+  - 0 issue "digicert.com"
+  - 128 issue "amazonaws.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+  note: >-
+    Registrable domain of the API host (api.swiftconnect.io). Added by hand from live dig output
+    because the script derived domains from the Website host only; DMARC here is strict
+    (p=reject, pct=100, adkim=s, aspf=s).
+- domain: readme.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

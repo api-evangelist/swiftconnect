@@ -1,0 +1,21 @@
+generated: '2026-08-29'
+method: searched
+source: https://www.swiftconnect.com/
+plan_count: 0
+note: >-
+  SwiftConnect publishes no pricing. There is no /pricing page (404), no plans or tiers anywhere on
+  www.swiftconnect.com, and no API price list. The commercial motion is enterprise: every call to
+  action on the site is "Schedule a Demo" / "Contact Sales", and API access is provisioned as part
+  of a customer or partner relationship rather than self-serve. Recorded as an explicit zero.
+model: enterprise-contact-sales
+plans: []
+contact:
+  demo: https://www.swiftconnect.com/demo/
+  sales: https://www.swiftconnect.com/contact-us/
+x-evidence:
+- url: https://www.swiftconnect.com/pricing/
+  status: 404
+- url: https://www.swiftconnect.com/demo/
+  status: 200
+- url: https://www.swiftconnect.com/contact-us/
+  status: 200

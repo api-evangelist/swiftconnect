@@ -1,0 +1,29 @@
+generated: '2026-08-29'
+method: probed
+source: probe:https://api.swiftconnect.io/credentials
+limit_count: 0
+note: >-
+  SwiftConnect publishes no rate-limit numbers on any public page — the reference that would carry
+  them sits behind a password wall. What IS observable is the runtime signal: the API explicitly
+  exposes `Retry-After` to cross-origin callers via access-control-expose-headers, so a client is
+  expected to back off on that header. No X-RateLimit-* / RateLimit-* headers appeared on the
+  unauthenticated response, and the exhaustion status code could not be observed without
+  credentials. Recorded as an honest zero with the header evidence, not as an absence of limits.
+limits: []
+response_headers:
+- name: Retry-After
+  observed: true
+  evidence: 'access-control-expose-headers: x-total-count,retry-after'
+  note: Exposed by CORS policy on api.swiftconnect.io; the backoff signal a client should read.
+- name: X-RateLimit-Limit
+  observed: false
+- name: X-RateLimit-Remaining
+  observed: false
+- name: RateLimit
+  observed: false
+exhaustion_status: unknown
+x-evidence:
+- url: https://api.swiftconnect.io/credentials
+  http_status: 401
+  header: 'access-control-expose-headers: x-total-count,retry-after'
+  fetched: '2026-08-29'

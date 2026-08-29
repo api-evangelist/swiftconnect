@@ -1,0 +1,94 @@
+generated: '2026-08-29'
+method: probed
+source: probe:2026-08-29
+note: >-
+  Every /.well-known/ path was probed on all four SwiftConnect hosts. NOTHING was served: the API
+  host returns a plain-text 404 for each path, the WordPress corporate site returns its themed
+  404 page, and accounts-v2.swiftconnect.io is a single-page-app catch-all that answers HTTP 200
+  with the same 896-byte HTML shell for every path — a soft 200, not a document. No WellKnown and
+  no SecurityTxt pointer is emitted; this file records a verified absence.
+hit_count: 0
+hosts:
+- host: https://api.swiftconnect.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: https://www.swiftconnect.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: https://accounts-v2.swiftconnect.io
+  soft_404_control:
+    note: >-
+      Every path on this host, including nonsense ones, returns HTTP 200 with an identical
+      896-byte SPA shell. Treated as a catch-all; no 200 here is counted as a document.
+    bytes: 896
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    verdict: soft-200-spa-shell
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    verdict: soft-200-spa-shell
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    verdict: soft-200-spa-shell
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    verdict: soft-200-spa-shell
+- host: https://swiftconnect.readme.io
+  soft_404_control:
+    note: >-
+      Password-protected ReadMe hub; every path returns the same ~12.7KB shell whose canonical
+      link is /password. No document is served.
+    bytes: 12807
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    verdict: soft-200-password-wall
