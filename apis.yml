@@ -12,6 +12,21 @@ description: >-
   authentication and a versioned `application/vnd.swiftconnect.v2+json` media type — plus a mobile
   "universal provisioning SDK" for adding credentials to a device wallet. The API reference is
   published on a password-protected ReadMe hub, so no machine-readable contract is public.
+accessModel:
+  pricing: unknown
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Requires approval
+  confidence: medium
+  source:
+  - plans
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-03'
+  method: derived
 image: https://swiftconnect.com/wp-content/uploads/2025/04/swiftconnect-icon.svg
 url: https://raw.githubusercontent.com/api-evangelist/swiftconnect/refs/heads/main/apis.yml
 x-type: company
