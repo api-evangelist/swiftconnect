@@ -44,6 +44,17 @@ tags:
 - Workplace
 - Commercial Real Estate
 - Provisioning
+- IoT
+tags_raw:
+- Company
+- Access Control
+- Physical Security
+- Identity
+- Credentials
+- Mobile Wallet
+- Workplace
+- Commercial Real Estate
+- Provisioning
 - Internet of Things
 apis:
 - aid: swiftconnect:swiftconnect-api
